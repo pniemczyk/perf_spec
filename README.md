@@ -1,8 +1,6 @@
 # PerfSpec
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/perf_spec`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+This gem can help you with performance testing your requests. The matcher `take_less_than` test request time expectations and if test fail generate output with details what takes so long (code, rendering, sql)
 
 ## Installation
 
@@ -12,23 +10,52 @@ Add this line to your application's Gemfile:
 gem 'perf_spec'
 ```
 
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install perf_spec
-
 ## Usage
+```ruby
 
-TODO: Write usage instructions here
+RSpec.describe 'ApiCarShow', type: :request do
+  it 'request takes less then 10 seconds' do
+    expect do
+      get api_car_path(@car.id), {}
+    end.to take_less_than(0.01)
+  end
+end
+```
 
-## Development
+when fail it returns:
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `bin/console` for an interactive prompt that will allow you to experiment.
+```
+Failures:
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release` to create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+  1) ApiCarShow GET /api/cars/:id after authenticated cars speed test
+     Failure/Error: expect do
+       expected that block take less than 0.01 but takes 0.045884
+       Takes controller: controller: 0.040161, view: 0, partial_view: 0, sql: 0.006124, other: 0
+       {
+         :sql        => [
+           [ 0] {
+             :duration => 0.0007099999999999999,
+             :name     => "Device Load",
+             :sql      => "SELECT  \"devices\".* FROM \"devices\"  WHERE \"devices\".\"auth_token\" = 'TEST_AUTH_TOKEN' LIMIT 1",
+             :method   => "block in authenticate_token",
+             :filename => "/app/controllers/api/base_controller.rb"
+           },
+           ...
+           [10] {
+             :duration => 0.000594,
+             :name     => "Document Load",
+             :sql      => "SELECT \"documents\".* FROM \"documents\" INNER JOIN \"car_multilanguages_documents\" ON \"documents\".\"id\" = \"car_multilanguages_documents\".\"document_id\" WHERE \"car_multilanguages_documents\".\"car_multilanguage_id\" = $1",
+             :method   => "block (2 levels) in _app_views_api_cars_show_json_jbuilder__1960233950839888821_70181062760260",
+             :filename => "/app/views/api/cars/show.json.jbuilder"
+           }
+         ],
+         :controller => [
+           [0] {
+             :duration => 0.040161
+           }
+         ]
+       }
+```
 
 ## Contributing
 
