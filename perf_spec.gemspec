@@ -27,5 +27,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'guard-rubocop', '~> 1.2'
   spec.add_development_dependency 'coveralls', '~> 0.7'
   spec.add_runtime_dependency 'meta_request', '~> 0.3'
-  spec.add_runtime_dependency 'awesome_print', '~> 1.6'
+  spec.add_runtime_dependency 'awesome_print', '~> 1.0'
 end
