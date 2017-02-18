@@ -7,7 +7,7 @@ Gem::Specification.new do |spec|
   spec.name          = 'perf_spec'
   spec.version       = PerfSpec::VERSION
   spec.authors       = ['Pawel Niemczyk']
-  spec.email         = ['pniemczyk@o2.pl']
+  spec.email         = ['pniemczyk.info@gmail.com']
 
   spec.summary       = 'Add ability to test performance of request in Rspec tests'
   spec.description   = 'Add ability to test performance of request in Rspec tests'
