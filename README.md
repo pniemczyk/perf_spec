@@ -1,8 +1,8 @@
 # PerfSpec
 
-[![Gem Version](https://badge.fury.io/rb/pref_spec.svg)](http://badge.fury.io/rb/pref_spec)
-[![Build Status](https://travis-ci.org/pniemczyk/pref_spec.svg?branch=0.2.0)](https://travis-ci.org/pniemczyk/pref_spec)
-[![Dependency Status](https://gemnasium.com/pniemczyk/pref_spec.svg)](https://gemnasium.com/pniemczyk/pref_spec)
+[![Gem Version](https://badge.fury.io/rb/perf_spec.svg)](https://badge.fury.io/rb/perf_spec)
+[![Build Status](https://travis-ci.org/pniemczyk/perf_spec.svg?branch=master)](https://travis-ci.org/pniemczyk/perf_spec)
+[![Dependency Status](https://gemnasium.com/badges/github.com/pniemczyk/perf_spec.svg)](https://gemnasium.com/github.com/pniemczyk/perf_spec)
 [![Coverage Status](https://coveralls.io/repos/pniemczyk/pref_spec/badge.png)](https://coveralls.io/r/pniemczyk/pref_spec)
 
 This gem can help you with performance testing your requests. The matcher `take_less_than` test request time expectations and if test fail generate output with details what takes so long (code, rendering, SQL)
